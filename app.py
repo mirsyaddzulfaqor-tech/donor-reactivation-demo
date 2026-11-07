@@ -80,12 +80,12 @@ with tab1:
     left.plotly_chart(px.bar(seg_counts, x="donors", y="segment", orientation="h",
                              title="Donors by lifecycle segment")
                       .update_layout(yaxis={"categoryorder": "total ascending"}),
-                      use_container_width=True)
+                      width="stretch")
     urg_counts = f.urgency.value_counts().reindex(URGENCY_ORDER).dropna().reset_index()
     urg_counts.columns = ["urgency", "donors"]
     right.plotly_chart(px.bar(urg_counts, x="urgency", y="donors", color="urgency",
                               color_discrete_map=URGENCY_COLORS, title="Donors by urgency")
-                       .update_layout(showlegend=False), use_container_width=True)
+                       .update_layout(showlegend=False), width="stretch")
 
     high = f[f.urgency == "High"]
     if len(high):
@@ -106,7 +106,7 @@ with tab2:
                          "segment": "Segment", "favourite_program": "Favourite program",
                          "last_date": "Last gift", "days_overdue": "Days overdue",
                          "frequency": "Gifts", "monetary": "Lifetime (Rp)"})
-    st.dataframe(show, use_container_width=True, hide_index=True, height=520,
+    st.dataframe(show, width="stretch", hide_index=True, height=520,
                  column_config={
                      "Priority score": st.column_config.ProgressColumn(min_value=0, max_value=100, format="%.1f"),
                      "P(give again)": st.column_config.NumberColumn(format="%.2f"),
@@ -124,31 +124,31 @@ with tab3:
                              title="Average priority score by segment",
                              labels={"priority_score": "avg priority score"})
                       .update_layout(yaxis={"categoryorder": "total ascending"}),
-                      use_container_width=True)
+                      width="stretch")
     rfm = f.rfm_segment.value_counts().reset_index()
     rfm.columns = ["rfm_segment", "donors"]
     right.plotly_chart(px.bar(rfm, x="donors", y="rfm_segment", orientation="h",
                               title="RFM segments")
                        .update_layout(yaxis={"categoryorder": "total ascending"}),
-                       use_container_width=True)
+                       width="stretch")
     active = f[f.frequency > 1]
     st.plotly_chart(px.histogram(active, x="avg_interval", nbins=60, range_x=[0, 400],
                                  title="Typical days between gifts (repeat donors)",
                                  labels={"avg_interval": "average interval (days)"}),
-                    use_container_width=True)
+                    width="stretch")
 
 # ---------------- trends ----------------
 with tab4:
     st.plotly_chart(px.bar(trend, x="bulan", y="total_nominal", color="akad",
                            title="Monthly donations by akad (spikes = Ramadan)",
                            labels={"bulan": "", "total_nominal": "Rp"}),
-                    use_container_width=True)
+                    width="stretch")
     top = programs.groupby("program", as_index=False).total_nominal.sum() \
         .sort_values("total_nominal", ascending=False).head(10)
     st.plotly_chart(px.bar(top, x="total_nominal", y="program", orientation="h",
                            title="Top programs by total donations", labels={"total_nominal": "Rp"})
                     .update_layout(yaxis={"categoryorder": "total ascending"}),
-                    use_container_width=True)
+                    width="stretch")
 
 st.caption("Built by Muhammad Irsyad Dzulfaqor · Python, scikit-learn/XGBoost, Streamlit · "
            "Code: see the GitHub repository.")
