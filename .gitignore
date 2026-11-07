@@ -1,3 +1,7 @@
 __pycache__/
 *.pyc
 .venv/
+data/donor_scores.csv
+data/model_metrics.json
+data/monthly_trend.csv
+data/program_summary.csv

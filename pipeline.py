@@ -87,8 +87,10 @@ def build_features(tx: pd.DataFrame, at: pd.Timestamp) -> pd.DataFrame:
     # one-time donors have no interval: use a long default
     f["avg_interval"] = f["avg_interval"].fillna(365).clip(lower=7)
     f["overdue_ratio"] = f.recency / f.avg_interval
-    f["favourite_program"] = t.groupby("id_donor").program.agg(lambda s: s.value_counts().index[0])
-    f["favourite_akad"] = t.groupby("id_donor").akad.agg(lambda s: s.value_counts().index[0])
+    for col, name in (("program", "favourite_program"), ("akad", "favourite_akad")):
+        counts = t.groupby(["id_donor", col]).size().reset_index(name="n")
+        top = counts.sort_values(["id_donor", "n"], ascending=[True, False]).drop_duplicates("id_donor")
+        f[name] = top.set_index("id_donor")[col]
     return f
 
 
