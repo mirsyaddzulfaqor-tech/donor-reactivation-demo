@@ -1,5 +1,5 @@
 {
-  "model": "HistGradientBoosting (xgboost not installed)",
+  "model": "Gradient boosting (scikit-learn HistGradientBoosting)",
   "cutoff": "2026-04-03",
   "horizon_days": 180,
   "train_rows": 14935,

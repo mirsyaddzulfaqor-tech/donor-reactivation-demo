@@ -39,7 +39,7 @@ except ImportError:  # fallback so the pipeline still runs without xgboost
     def make_model():
         return HistGradientBoostingClassifier(max_depth=4, learning_rate=0.05,
                                               max_iter=300, random_state=42)
-    MODEL_NAME = "HistGradientBoosting (xgboost not installed)"
+    MODEL_NAME = "Gradient boosting (scikit-learn HistGradientBoosting)"
 
 DATA = Path(__file__).parent / "data"
 SNAPSHOT = pd.Timestamp("2026-09-30")
