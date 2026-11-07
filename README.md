@@ -4,7 +4,7 @@
 
 > **Demo with synthetic data.** This repository recreates a project I led during a remote data analyst internship with a nonprofit. The client's data is confidential, so every donor, amount and date here is randomly generated (`generate_data.py`) with realistic patterns: zakat/infaq/sedekah programs, Ramadan spikes, 50–60 day giving cycles and a large dormant base.
 
-**Live app:** [add Streamlit link] · **Dashboard:** [add Looker Studio link]
+**Live app:** [irsyad-donor-reactivation-demo.streamlit.app](https://irsyad-donor-reactivation-demo.streamlit.app/)
 
 ## The problem
 
