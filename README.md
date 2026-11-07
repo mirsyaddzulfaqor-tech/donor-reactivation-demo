@@ -13,7 +13,7 @@ Fundraising teams hold years of transactions but no clear answer to *"who do we 
 ## Approach
 
 1. **Features per donor:** recency, frequency, lifetime value, average gift, tenure, average days between gifts, how overdue the donor is versus their own rhythm, program variety and Ramadan share.
-2. **Model:** a gradient-boosted classifier (XGBoost) predicts whether a donor will give again in the next 180 days. Features are taken at a cut-off date and the label from the 180 days after it, so the model never sees the future.
+2. **Model:** a gradient-boosted classifier predicts whether a donor will give again in the next 180 days. Features are taken at a cut-off date and the label from the 180 days after it, so the model never sees the future. The original project used XGBoost; `pipeline.py` uses XGBoost when installed and falls back to scikit-learn's HistGradientBoosting. The scores committed in `data/` were produced with the scikit-learn model so the app opens instantly.
 3. **Segmentation:** lifecycle segments (Active, At-Risk, Dormant, Former Loyal) and classic RFM segments (Champions, Cannot Lose Them, At Risk, Lost, ...).
 4. **Priority score (0–100):** 50% predicted chance to give again + 30% lifetime value rank + 20% frequency rank, only for donors past their usual giving interval. The top 7% are marked **High** urgency.
 

@@ -1,0 +1,12 @@
+{
+  "model": "HistGradientBoosting (xgboost not installed)",
+  "cutoff": "2026-04-03",
+  "horizon_days": 180,
+  "train_rows": 14935,
+  "test_rows": 4979,
+  "base_rate": 0.0367,
+  "roc_auc": 0.942,
+  "pr_auc": 0.639,
+  "top10_lift": 8.32,
+  "note": "Synthetic data - metrics show the method works, not real-world performance."
+}
